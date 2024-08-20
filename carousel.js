@@ -26,12 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     `;
 
+    // Now that the DOM elements exist, query for them and attach event listeners
     const gallery = document.querySelector('.custom-gallery');
     const items = document.querySelectorAll('.gallery-item');
     const totalItems = items.length;
     let currentIndex = 0;
     let interval;
 
+    // Define the functions
     function showSlide(index) {
         if (index >= totalItems) {
             currentIndex = 0;
@@ -59,18 +61,23 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(interval);
     }
 
-    document.querySelector('.next').addEventListener('click', function() {
+    // Attach event listeners after the elements have been created
+    const nextButton = document.querySelector('.next');
+    const prevButton = document.querySelector('.prev');
+
+    nextButton.addEventListener('click', function() {
         nextSlide();
         stopAutoplay();
         startAutoplay(); // Restart autoplay after manual navigation
     });
 
-    document.querySelector('.prev').addEventListener('click', function() {
+    prevButton.addEventListener('click', function() {
         prevSlide();
         stopAutoplay();
         startAutoplay(); // Restart autoplay after manual navigation
     });
 
+    // Autoplay and hover events
     gallery.addEventListener('mouseenter', stopAutoplay);
     gallery.addEventListener('mouseleave', startAutoplay);
 
