@@ -1,18 +1,18 @@
-function createCarousel(containerId, imageUrls) {
+function createCarousel(containerId, imageUrls, prevBtnImg, nextBtnImg) {
     const container = document.getElementById(containerId);
 
     // Create the carousel HTML structure
     container.innerHTML = `
         <div class="custom-gallery-container">
-            <div class="custom-gallery"></div>
             <div class="gallery-nav">
                 <button class="prev">
-                    <img src="https://yourdomain.com/left-arrow.png" alt="Previous">
+                    <img src="${prevBtnImg}" alt="Previous">
                 </button>
                 <button class="next">
-                    <img src="https://yourdomain.com/right-arrow.png" alt="Next">
+                    <img src="${nextBtnImg}" alt="Next">
                 </button>
             </div>
+            <div class="custom-gallery"></div>
         </div>
     `;
 
