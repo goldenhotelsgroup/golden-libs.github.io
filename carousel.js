@@ -1,81 +1,79 @@
-class ImageCarousel {
-  constructor(container, images) {
-    this.container = document.querySelector(container);
-    this.images = images;
-    this.currentIndex = 0;
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('carouselContainer');
 
-    // Initialize the carousel
-    this.initCarousel();
-  }
-
-  initCarousel() {
     // Create the carousel HTML structure
-    const galleryContainer = document.createElement('div');
-    galleryContainer.classList.add('custom-gallery-container');
-
-    const galleryNav = `
-      <div class="gallery-nav">
-        <button class="prev">
-          <img src="left-arrow.png" alt="Previous">
-        </button>
-        <button class="next">
-          <img src="right-arrow.png" alt="Next">
-        </button>
-      </div>
+    container.innerHTML = `
+        <div class="custom-gallery-container">
+            <div class="custom-gallery">
+                <div class="gallery-item">
+                    <img src="https://example.com/image1.jpg" alt="Image 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://example.com/image2.jpg" alt="Image 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://example.com/image3.jpg" alt="Image 3">
+                </div>
+            </div>
+            <div class="gallery-nav">
+                <button class="prev">
+                    <img src="https://yourdomain.com/left-arrow.png" alt="Previous">
+                </button>
+                <button class="next">
+                    <img src="https://yourdomain.com/right-arrow.png" alt="Next">
+                </button>
+            </div>
+        </div>
     `;
 
-    const gallery = document.createElement('div');
-    gallery.classList.add('custom-gallery');
+    const gallery = document.querySelector('.custom-gallery');
+    const items = document.querySelectorAll('.gallery-item');
+    const totalItems = items.length;
+    let currentIndex = 0;
+    let interval;
 
-    // Add the images to the carousel
-    this.images.forEach((imageSrc) => {
-      const galleryItem = document.createElement('div');
-      galleryItem.classList.add('gallery-item');
-      const img = document.createElement('img');
-      img.src = imageSrc;
-      img.alt = "Carousel Image";
-      galleryItem.appendChild(img);
-      gallery.appendChild(galleryItem);
+    function showSlide(index) {
+        if (index >= totalItems) {
+            currentIndex = 0;
+        } else if (index < 0) {
+            currentIndex = totalItems - 1;
+        } else {
+            currentIndex = index;
+        }
+        gallery.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+
+    function startAutoplay() {
+        interval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+    }
+
+    function stopAutoplay() {
+        clearInterval(interval);
+    }
+
+    document.querySelector('.next').addEventListener('click', function() {
+        nextSlide();
+        stopAutoplay();
+        startAutoplay(); // Restart autoplay after manual navigation
     });
 
-    // Add gallery and navigation buttons to the container
-    galleryContainer.appendChild(gallery);
-    galleryContainer.innerHTML += galleryNav;
-    this.container.appendChild(galleryContainer);
-
-    // Add event listeners for buttons
-    const prevButton = this.container.querySelector('.prev');
-    const nextButton = this.container.querySelector('.next');
-
-    prevButton.addEventListener('click', () => this.showPreviousImage());
-    nextButton.addEventListener('click', () => this.showNextImage());
-  }
-
-  showPreviousImage() {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.images.length) % this.images.length;
-    this.updateCarousel();
-  }
-
-  showNextImage() {
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
-    this.updateCarousel();
-  }
-
-  updateCarousel() {
-    const galleryItems = this.container.querySelectorAll('.gallery-item');
-    galleryItems.forEach((item, index) => {
-      item.style.display = index === this.currentIndex ? 'block' : 'none';
+    document.querySelector('.prev').addEventListener('click', function() {
+        prevSlide();
+        stopAutoplay();
+        startAutoplay(); // Restart autoplay after manual navigation
     });
-  }
-}
 
-// Usage example
-document.addEventListener('DOMContentLoaded', function () {
-  const images = [
-    'https://i.imgur.com/V9Xz2q6.jpeg',
-    'https://i.imgur.com/V9Xz2q6.jpeg',
-    'https://i.imgur.com/V9Xz2q6.jpeg'
-  ];
-  new ImageCarousel('#carouselContainer', images);
+    gallery.addEventListener('mouseenter', stopAutoplay);
+    gallery.addEventListener('mouseleave', startAutoplay);
+
+    // Start autoplay on page load
+    startAutoplay();
 });
