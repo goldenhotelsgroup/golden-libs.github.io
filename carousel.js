@@ -1,20 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('carouselContainer');
+function createCarousel(containerId, imageUrls) {
+    const container = document.getElementById(containerId);
 
     // Create the carousel HTML structure
     container.innerHTML = `
         <div class="custom-gallery-container">
-            <div class="custom-gallery">
-                <div class="gallery-item">
-                    <img src="https://example.com/image1.jpg" alt="Image 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://example.com/image2.jpg" alt="Image 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://example.com/image3.jpg" alt="Image 3">
-                </div>
-            </div>
+            <div class="custom-gallery"></div>
             <div class="gallery-nav">
                 <button class="prev">
                     <img src="https://yourdomain.com/left-arrow.png" alt="Previous">
@@ -26,14 +16,21 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     `;
 
-    // Now that the DOM elements exist, query for them and attach event listeners
-    const gallery = document.querySelector('.custom-gallery');
-    const items = document.querySelectorAll('.gallery-item');
+    const gallery = container.querySelector('.custom-gallery');
+    
+    // Dynamically add images to the gallery
+    imageUrls.forEach(url => {
+        const galleryItem = document.createElement('div');
+        galleryItem.classList.add('gallery-item');
+        galleryItem.innerHTML = `<img src="${url}" alt="Carousel Image">`;
+        gallery.appendChild(galleryItem);
+    });
+
+    const items = gallery.querySelectorAll('.gallery-item');
     const totalItems = items.length;
     let currentIndex = 0;
     let interval;
 
-    // Define the functions
     function showSlide(index) {
         if (index >= totalItems) {
             currentIndex = 0;
@@ -61,17 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(interval);
     }
 
-    // Attach event listeners after the elements have been created
-    const nextButton = document.querySelector('.next');
-    const prevButton = document.querySelector('.prev');
-
-    nextButton.addEventListener('click', function() {
+    // Attach event listeners for the buttons
+    container.querySelector('.next').addEventListener('click', function() {
         nextSlide();
         stopAutoplay();
         startAutoplay(); // Restart autoplay after manual navigation
     });
 
-    prevButton.addEventListener('click', function() {
+    container.querySelector('.prev').addEventListener('click', function() {
         prevSlide();
         stopAutoplay();
         startAutoplay(); // Restart autoplay after manual navigation
@@ -83,4 +77,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start autoplay on page load
     startAutoplay();
-});
+}
