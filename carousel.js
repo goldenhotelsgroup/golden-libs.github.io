@@ -1,5 +1,6 @@
 function createCarousel(containerId, imageUrls, prevBtnImg, nextBtnImg) {
     const container = document.getElementById(containerId);
+    console.log("Carousel is being created");
 
     // Create the carousel HTML structure
     container.innerHTML = `
