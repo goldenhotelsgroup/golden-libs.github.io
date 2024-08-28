@@ -1,9 +1,10 @@
 # golden-libs
 
-## Initialising the Stylesheet
-Add the following to your header to initialise the stylesheet:
+## Initialisation
+Add the following to your header to initialise the stylesheet & component library:
 ```html
 <link rel="preload" href="https://goldenhotelsgroup.github.io/golden-libs.github.io/style.css" as="style" onload="this.rel='stylesheet'">
+<script src="https://goldenhotelsgroup.github.io/golden-libs.github.io/components.js"></script>
 ```
 
 ## Carousel Component
