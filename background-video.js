@@ -9,6 +9,7 @@ function createVideoPlayer(containerId, videoUrl) {
                 <source src="${videoUrl}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+        <div class="black-overlay"></div>
         </div>
     `;
 }
