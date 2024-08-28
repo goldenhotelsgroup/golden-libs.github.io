@@ -38,7 +38,7 @@ To initialise the component add the following code to your code block.
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        createVideoPlayer('videoContainer', 'https://ambroseestate.com.au/wp-content/uploads/2019/07/Shannon%20&%20Rocco%20_Trailer.mp4');
+        createVideoPlayer('videoContainer', 'video-file-link');
     });
 </script>
 ```
