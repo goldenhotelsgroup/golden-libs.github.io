@@ -1,5 +1,11 @@
 # golden-libs
 
+## Initialising the Stylesheet
+Add the following to your header to initialise the stylesheet:
+```html
+<link rel="preload" href="https://goldenhotelsgroup.github.io/golden-libs.github.io/style.css" as="style" onload="this.rel='stylesheet'">
+```
+
 ## Carousel Component
 To initialise the component add the following code to your code block.
 
@@ -30,8 +36,6 @@ To initialise the component add the following code to your code block.
 
 ```html
 <div id="videoContainer"></div>
-
-<link rel="preload" href="https://goldenhotelsgroup.github.io/golden-libs.github.io/style.css" as="style" onload="this.rel='stylesheet'">
 <script src="https://goldenhotelsgroup.github.io/golden-libs.github.io/background-video.js"></script>
 
 <!-- Your script -->
