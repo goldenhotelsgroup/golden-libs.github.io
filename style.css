@@ -95,6 +95,7 @@
 
 .video-wrapper {
   height: 100% + 135px;
+  top: -135px;
 }
 
 .video {
