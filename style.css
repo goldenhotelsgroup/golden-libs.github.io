@@ -109,9 +109,9 @@
 #events-container {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Space between event cards */
+  gap: 20px; /* Space between each event card */
   margin: 20px;
-  width: 100%; /* Ensure it takes full width */
+  width: 100%; /* Ensure container takes full width */
 }
 
 .event {
@@ -123,20 +123,23 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease-in-out; /* Smooth hover effect */
   overflow: hidden;
   min-height: 150px; /* Ensure the event div has a minimum height */
-  width: 100%; /* Ensure the event div takes full width */
+  margin-bottom: 20px; /* Add space between the events */
+  padding: 10px; /* Add padding inside the event box */
 }
 
 .event:hover {
   transform: scale(1.02); /* Slightly enlarge on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Add a stronger shadow on hover */
 }
 
 .event-image {
   flex: 0 0 150px; /* Fixed width for the image */
   height: 150px; /* Fixed height to match */
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .event-image img {
@@ -147,10 +150,10 @@
 
 .event-info {
   flex: 1;
-  padding: 15px;
+  padding-left: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .event h3 {
