@@ -55,3 +55,15 @@ section[data-section-id="SECTION_ID"] {
    box-sizing: border-box;
 }
 ```
+
+## Facebook Event Ripper Component
+To initialise the component add the following code to your code block.
+```html
+<div id="eventsContainer"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    createEventList("eventsContainer", "facebook-venue-name");  // Replace "300acreswa" with the desired pageId
+});
+</script>
+```
