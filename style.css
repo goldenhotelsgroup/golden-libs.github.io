@@ -116,46 +116,43 @@
 
 .event {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Row layout: Image and text side by side */
+  height: 200px; /* Fixed height */
+  width: 100%; /* Full width */
   border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: #f9f9f9;
   overflow: hidden;
-  margin-bottom: 20px;
-  height: 200px; /* Fixed height */
-  width: 100%; /* Ensure full width */
-  box-sizing: border-box;
+  background-color: #f9f9f9;
 }
 
 .event-image {
-  flex-basis: 40%; /* Image takes 40% of the width */
-  height: 100%; /* Fills full height of the container */
+  flex: 0 0 40%; /* Image takes 40% of the container width */
+  height: 100%; /* Fill the height of the container */
   overflow: hidden;
 }
 
 .event-image img {
-  width: 100%;
+  width: 100%; 
   height: 100%;
-  object-fit: cover; /* Ensure image fills the area without distortion */
+  object-fit: cover; /* Ensure the image covers its container */
 }
 
 .event-info {
-  flex-basis: 60%; /* Text takes up the remaining 60% */
+  flex: 1; /* Text takes the remaining 60% of the width */
   padding: 15px;
-  overflow-y: auto; /* Scrollable content */
-  height: 100%;
+  overflow-y: auto; /* Scrollable if the content overflows */
 }
 
 .event-info h3 {
   margin: 0;
   font-size: 1.5em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .event-info p {
   margin: 10px 0;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limits text lines */
+  -webkit-box-orient: vertical;
 }
