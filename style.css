@@ -130,7 +130,7 @@
   color: inherit;
   transition: transform 0.2s ease-in-out;
   overflow: hidden;
-  height: 650px; /* Increase the height of the container */
+  height: 2650px; /* Increase the height of the container */
   margin-bottom: 20px;
 }
 
