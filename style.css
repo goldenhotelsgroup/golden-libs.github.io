@@ -130,7 +130,7 @@
   color: inherit;
   transition: transform 0.2s ease-in-out;
   overflow: hidden;
-  max-height: 300px;
+  max-height: 500px;
   width: 100%; /* Ensure event takes full width */
 }
 
