@@ -125,9 +125,10 @@
   color: inherit;
   transition: transform 0.2s ease-in-out; /* Smooth hover effect */
   overflow: hidden;
-  max-height: 300px; /* Set maximum height for the event div */
+  max-height: 300px; /* Set maximum height */
+  width: 100%;
   margin-bottom: 20px; /* Add space between the events */
-  padding: 10px; /* Add padding inside the event box */
+  padding: 10px;
 }
 
 .event:hover {
@@ -136,8 +137,8 @@
 }
 
 .event-image {
-  flex: 1; /* Take up half the width */
-  height: 100%; /* Ensure the image fills the height of the container */
+  flex: 1; /* 50% of the width */
+  height: 100%;
   overflow: hidden;
   border-radius: 5px;
 }
@@ -149,7 +150,7 @@
 }
 
 .event-info {
-  flex: 1; /* Take up the other half of the width */
+  flex: 1; /* 50% of the width */
   padding-left: 15px;
   display: flex;
   flex-direction: column;
