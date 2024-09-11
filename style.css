@@ -125,43 +125,35 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-  color: inherit;
   overflow: hidden;
-  min-height: 200px; /* Reduce minimum height */
-  max-height: 250px; /* Add max height to prevent it from being too tall */
   margin-bottom: 20px;
+  height: 200px; /* Fixed height for the container */
   width: 100%;
-  height: auto;
 }
 
 .event-image {
-  width: 50%;
-  min-height: 200px; /* Match the height reduction */
-  max-height: 250px;
+  width: 40%; /* Image takes up 40% of the width */
+  height: 100%; /* Fill the height of the container */
   overflow: hidden;
 }
 
 .event-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Ensure the image covers the entire area */
 }
 
 .event-info {
-  width: 50%;
+  width: 60%; /* Text takes up the rest of the width */
   padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow-y: auto;
+  overflow-y: auto; /* Text scrolls if it overflows */
+  height: 100%; /* Ensure the text takes up the full height of the container */
 }
 
 .event-info h3 {
   margin: 0;
   font-size: 1.5em;
-  white-space: nowrap;
+  white-space: nowrap; /* Prevent the title from breaking */
   overflow: hidden;
   text-overflow: ellipsis;
 }
