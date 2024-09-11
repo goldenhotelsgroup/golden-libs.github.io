@@ -125,7 +125,7 @@
   color: inherit;
   transition: transform 0.2s ease-in-out; /* Smooth hover effect */
   overflow: hidden;
-  min-height: 150px; /* Ensure the event div has a minimum height */
+  max-height: 300px; /* Set maximum height for the event div */
   margin-bottom: 20px; /* Add space between the events */
   padding: 10px; /* Add padding inside the event box */
 }
@@ -136,8 +136,8 @@
 }
 
 .event-image {
-  flex: 0 0 150px; /* Fixed width for the image */
-  height: 150px; /* Fixed height to match */
+  flex: 1; /* Take up half the width */
+  height: 100%; /* Ensure the image fills the height of the container */
   overflow: hidden;
   border-radius: 5px;
 }
@@ -149,7 +149,7 @@
 }
 
 .event-info {
-  flex: 1;
+  flex: 1; /* Take up the other half of the width */
   padding-left: 15px;
   display: flex;
   flex-direction: column;
