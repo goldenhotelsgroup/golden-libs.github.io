@@ -121,7 +121,7 @@
 
 .event {
   display: flex;
-  flex-direction: row; /* Ensures image and text are side by side */
+  flex-direction: row; /* Align image and text side by side */
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
@@ -130,35 +130,38 @@
   color: inherit;
   transition: transform 0.2s ease-in-out;
   overflow: hidden;
-  max-height: 500px;
-  width: 100%; /* Ensure event takes full width */
+  height: 250px; /* Increase the height of the container */
+  margin-bottom: 20px;
 }
 
 .event-image {
-  width: 50%; /* Left half for the image */
+  width: 50%; /* Image takes up the left half */
+  height: 100%; /* Make the image fill the container height */
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px;
 }
 
 .event-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure image fills its container */
+  object-fit: cover; /* Ensure the image covers the entire area */
 }
 
 .event-info {
-  width: 50%; /* Right half for the text */
+  width: 50%; /* Text takes up the right half */
   padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow-y: auto; /* Allow the text to scroll if it overflows */
+  height: 100%;
 }
 
-.event h3 {
-  margin-top: 0;
+.event-info h3 {
+  margin: 0;
   font-size: 1.5em;
 }
 
-.event p {
+.event-info p {
   margin: 10px 0;
 }
