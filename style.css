@@ -139,6 +139,7 @@
 .event-image {
   width: 50%; /* Image takes half the width */
   min-height: 300px; /* Ensure image is tall enough */
+  max-height: 400px;
   overflow: hidden;
 }
 
