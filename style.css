@@ -129,24 +129,24 @@
   text-decoration: none;
   color: inherit;
   overflow: hidden;
-  min-height: 300px; /* Set a minimum height */
-  max-height: 400px;
+  min-height: 200px; /* Reduce minimum height */
+  max-height: 250px; /* Add max height to prevent it from being too tall */
   margin-bottom: 20px;
-  width: 100%; /* Ensure event takes the full width */
-  height: auto; /* Allow height to grow with content */
+  width: 100%;
+  height: auto;
 }
 
 .event-image {
-  width: 50%; /* Image takes half the width */
-  min-height: 300px; /* Ensure image is tall enough */
-  max-height: 400px;
+  width: 50%;
+  min-height: 200px; /* Match the height reduction */
+  max-height: 250px;
   overflow: hidden;
 }
 
 .event-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure image fills the container */
+  object-fit: cover;
 }
 
 .event-info {
@@ -155,7 +155,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: auto; /* Scrollable content */
+  overflow-y: auto;
 }
 
 .event-info h3 {
