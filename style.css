@@ -117,7 +117,7 @@
 .event {
   display: flex;
   flex-direction: row; /* Row layout: Image and text side by side */
-  height: 200px; /* Fixed height */
+  height: 400px; /* Fixed height */
   width: 100%; /* Full width */
   border: 1px solid #ddd;
   border-radius: 5px;
