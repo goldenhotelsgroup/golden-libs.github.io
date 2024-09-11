@@ -130,6 +130,7 @@
   color: inherit;
   overflow: hidden;
   min-height: 300px; /* Set a minimum height */
+  max-height: 400px;
   margin-bottom: 20px;
   width: 100%; /* Ensure event takes the full width */
   height: auto; /* Allow height to grow with content */
