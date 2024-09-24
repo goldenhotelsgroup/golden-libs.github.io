@@ -7,6 +7,12 @@ Add the following to your header to initialise the stylesheet & component librar
 <script src="https://goldenhotelsgroup.github.io/golden-libs.github.io/components.js"></script>
 ```
 
+# Back to Top!
+To add back to top functionality add the follow code into header
+```html
+<script src="https://goldenhotelsgroup.github.io/golden-libs/backToTop.js"></script>
+```
+
 ## Carousel Component
 To initialise the component add the following code to your code block.
 
