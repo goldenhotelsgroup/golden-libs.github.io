@@ -167,7 +167,7 @@
     bottom: 30px;
     right: 30px;
     z-index: 1000;
-    background-color: #333;
+    background-color: #bac392;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -179,5 +179,5 @@
 }
 
 #backToTopBtn:hover {
-    background-color: #555;
+    background-color: #c5d194;
 }
