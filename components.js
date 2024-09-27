@@ -122,7 +122,7 @@ function createEventList(containerId, pageId) {
                 return;
             }
 
-            // Fetching upcoming and past events from the Facebook Graph API
+            // Fetch upcoming and past events from the Facebook Graph API
             const upcomingResponse = await fetch(`https://graph.facebook.com/v20.0/${pageId}/events?fields=id,name,start_time,end_time,description,cover&time_filter=upcoming&access_token=${accessToken}`);
             const upcomingData = await upcomingResponse.json();
 
@@ -134,40 +134,86 @@ function createEventList(containerId, pageId) {
                 return;
             }
 
-            const allEvents = [...upcomingData.data, ...pastData.data];
-            const sortedEvents = allEvents.sort((a, b) => new Date(b.start_time) - new Date(a.start_time));
-            const recentEvents = sortedEvents.slice(0, 9);
-
             // Clear existing content
             eventsContainer.innerHTML = '';
 
-            recentEvents.forEach(event => {
-                const startTime = new Date(event.start_time);
-                const endTime = event.end_time ? new Date(event.end_time) : null;
-                const formattedStartTime = startTime.toLocaleDateString();
-                const formattedEndTime = endTime && endTime.getTime() !== startTime.getTime() ? ` - ${endTime.toLocaleDateString()}` : '';
+            // Handle upcoming events
+            const upcomingEvents = upcomingData.data;
+            if (upcomingEvents.length > 0) {
+                const upcomingLabel = document.createElement('h2');
+                upcomingLabel.textContent = 'Upcoming Events';
+                eventsContainer.appendChild(upcomingLabel);
 
-                const eventLink = `https://www.facebook.com/events/${event.id}`;
-                const coverImage = event.cover ? `<img src="${event.cover.source}" alt="Event cover" class="event-cover">` : '';
+                upcomingEvents.forEach(event => {
+                    const startTime = new Date(event.start_time);
+                    const endTime = event.end_time ? new Date(event.end_time) : null;
+                    const formattedStartTime = startTime.toLocaleDateString();
+                    const formattedEndTime = endTime && endTime.getTime() !== startTime.getTime() ? ` - ${endTime.toLocaleDateString()}` : '';
 
-                // Create event HTML structure
-                const eventDiv = document.createElement('a');
-                eventDiv.href = eventLink;
-                eventDiv.target = "_blank";
-                eventDiv.className = 'event';
-                eventDiv.innerHTML = `
-                    <div class="event-image">
-                        ${coverImage}
-                    </div>
-                    <div class="event-info">
-                        <h3>${event.name}</h3>
-                        <p>${formattedStartTime}${formattedEndTime}</p>
-                        <p>${event.description || 'No description available'}</p>
-                    </div>
-                `;
+                    const eventLink = `https://www.facebook.com/events/${event.id}`;
+                    const coverImage = event.cover ? `<img src="${event.cover.source}" alt="Event cover" class="event-cover">` : '';
 
-                eventsContainer.appendChild(eventDiv);
-            });
+                    // Create event HTML structure
+                    const eventDiv = document.createElement('a');
+                    eventDiv.href = eventLink;
+                    eventDiv.target = "_blank";
+                    eventDiv.className = 'event';
+                    eventDiv.innerHTML = `
+                        <div class="event-image">
+                            ${coverImage}
+                        </div>
+                        <div class="event-info">
+                            <h3>${event.name}</h3>
+                            <p>${formattedStartTime}${formattedEndTime}</p>
+                            <p>${event.description || 'No description available'}</p>
+                        </div>
+                    `;
+
+                    eventsContainer.appendChild(eventDiv);
+                });
+            }
+
+            // Handle past events
+            const pastEvents = pastData.data;
+            if (pastEvents.length > 0) {
+                const pastLabel = document.createElement('h2');
+                pastLabel.textContent = 'Previous Events';
+
+                // Add label before past events if there are upcoming events, or directly if not
+                if (upcomingEvents.length > 0) {
+                    eventsContainer.appendChild(pastLabel);
+                } else {
+                    eventsContainer.appendChild(pastLabel);
+                }
+
+                pastEvents.forEach(event => {
+                    const startTime = new Date(event.start_time);
+                    const endTime = event.end_time ? new Date(event.end_time) : null;
+                    const formattedStartTime = startTime.toLocaleDateString();
+                    const formattedEndTime = endTime && endTime.getTime() !== startTime.getTime() ? ` - ${endTime.toLocaleDateString()}` : '';
+
+                    const eventLink = `https://www.facebook.com/events/${event.id}`;
+                    const coverImage = event.cover ? `<img src="${event.cover.source}" alt="Event cover" class="event-cover">` : '';
+
+                    // Create event HTML structure
+                    const eventDiv = document.createElement('a');
+                    eventDiv.href = eventLink;
+                    eventDiv.target = "_blank";
+                    eventDiv.className = 'event';
+                    eventDiv.innerHTML = `
+                        <div class="event-image">
+                            ${coverImage}
+                        </div>
+                        <div class="event-info">
+                            <h3>${event.name}</h3>
+                            <p>${formattedStartTime}${formattedEndTime}</p>
+                            <p>${event.description || 'No description available'}</p>
+                        </div>
+                    `;
+
+                    eventsContainer.appendChild(eventDiv);
+                });
+            }
         } catch (error) {
             console.error('Error fetching events:', error);
         }
