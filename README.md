@@ -69,7 +69,7 @@ To initialise the component add the following code to your code block.
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    createEventList("eventsContainer", "facebook-venue-name");  // Replace "300acreswa" with the desired pageId
+    createEventList("eventsContainer", "mthenrytavern", "link-to-default-image");  // Replace "300acreswa" with the desired pageId
 });
 </script>
 ```
