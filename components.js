@@ -173,18 +173,13 @@ function createEventList(containerId, pageId) {
                 });
             }
 
-            // Handle past events
-            const pastEvents = pastData.data;
+            // Handle past events, limited to 6 events
+            const pastEvents = pastData.data.slice(0, 6);
             if (pastEvents.length > 0) {
                 const pastLabel = document.createElement('h2');
                 pastLabel.textContent = 'Previous Events';
 
-                // Add label before past events if there are upcoming events, or directly if not
-                if (upcomingEvents.length > 0) {
-                    eventsContainer.appendChild(pastLabel);
-                } else {
-                    eventsContainer.appendChild(pastLabel);
-                }
+                eventsContainer.appendChild(pastLabel);
 
                 pastEvents.forEach(event => {
                     const startTime = new Date(event.start_time);
