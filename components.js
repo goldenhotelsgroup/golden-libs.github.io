@@ -96,7 +96,7 @@ function createVideoPlayer(containerId, videoUrl) {
     `;
 }
 
-function createEventList(containerId, pageId) {
+function createEventList(containerId, pageId, defaultImageUrl) {
     const container = document.getElementById(containerId);
     container.innerHTML = `<div id="events-container"></div>`;
     const eventsContainer = container.querySelector('#events-container');
@@ -151,7 +151,7 @@ function createEventList(containerId, pageId) {
                     const formattedEndTime = endTime && endTime.getTime() !== startTime.getTime() ? ` - ${endTime.toLocaleDateString()}` : '';
 
                     const eventLink = `https://www.facebook.com/events/${event.id}`;
-                    const coverImage = event.cover ? `<img src="${event.cover.source}" alt="Event cover" class="event-cover">` : '';
+                    const coverImage = event.cover ? event.cover.source : defaultImageUrl;
 
                     // Create event HTML structure
                     const eventDiv = document.createElement('a');
@@ -160,7 +160,7 @@ function createEventList(containerId, pageId) {
                     eventDiv.className = 'event';
                     eventDiv.innerHTML = `
                         <div class="event-image">
-                            ${coverImage}
+                            <img src="${coverImage}" alt="Event cover" class="event-cover">
                         </div>
                         <div class="event-info">
                             <h3>${event.name}</h3>
@@ -188,7 +188,7 @@ function createEventList(containerId, pageId) {
                     const formattedEndTime = endTime && endTime.getTime() !== startTime.getTime() ? ` - ${endTime.toLocaleDateString()}` : '';
 
                     const eventLink = `https://www.facebook.com/events/${event.id}`;
-                    const coverImage = event.cover ? `<img src="${event.cover.source}" alt="Event cover" class="event-cover">` : '';
+                    const coverImage = event.cover ? event.cover.source : defaultImageUrl;
 
                     // Create event HTML structure
                     const eventDiv = document.createElement('a');
@@ -197,7 +197,7 @@ function createEventList(containerId, pageId) {
                     eventDiv.className = 'event';
                     eventDiv.innerHTML = `
                         <div class="event-image">
-                            ${coverImage}
+                            <img src="${coverImage}" alt="Event cover" class="event-cover">
                         </div>
                         <div class="event-info">
                             <h3>${event.name}</h3>
