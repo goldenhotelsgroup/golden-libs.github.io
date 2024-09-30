@@ -114,6 +114,12 @@
   width: 100%;
 }
 
+#events-container h3 
+{
+    font-size: 12px;
+    color: grey;
+}
+
 .event {
   display: flex;
   flex-direction: row; /* Row layout: Image and text side by side */
