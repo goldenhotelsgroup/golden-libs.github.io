@@ -116,6 +116,7 @@ function createEventList(containerId, pageId, defaultImageUrl) {
     const fetchEvents = async () => {
         try {
             const accessToken = await fetchAccessToken();
+            console.log('Access Token:', accessToken); // Add this line
 
             if (!accessToken) {
                 console.error('Access token is missing');
