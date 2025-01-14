@@ -113,6 +113,22 @@ function createEventList(containerId, pageId, defaultImageUrl) {
         }
     };
 
+    // Fetch the page profile picture
+    const fetchProfilePicture = async (accessToken) => {
+        try {
+            const response = await fetch(`https://graph.facebook.com/v20.0/${pageId}/picture?redirect=false&access_token=${accessToken}`);
+            const data = await response.json();
+            if (data.error) {
+                console.error('Error fetching profile picture:', data.error);
+                return null;
+            }
+            return data.data.url;
+        } catch (error) {
+            console.error('Error fetching profile picture:', error);
+            return null;
+        }
+    };
+
     const fetchEvents = async () => {
         try {
             const accessToken = await fetchAccessToken();
@@ -122,6 +138,10 @@ function createEventList(containerId, pageId, defaultImageUrl) {
                 console.error('Access token is missing');
                 return;
             }
+            
+            // Fetch the page profile picture
+            const defaultImageUrl = await fetchProfilePicture(accessToken);
+            console.log('Default Profile Picture URL:', defaultImageUrl);
 
             // Fetch upcoming and past events from the Facebook Graph API
             const upcomingResponse = await fetch(`https://graph.facebook.com/v20.0/${pageId}/events?fields=id,name,start_time,end_time,description,cover&time_filter=upcoming&access_token=${accessToken}`);
